@@ -1,0 +1,10 @@
+C:\Users\rodolfo.gomes\RSAGen\RSAGen\bin\Debug\RSAtools.exe.config
+C:\Users\rodolfo.gomes\RSAGen\RSAGen\bin\Debug\RSAtools.exe
+C:\Users\rodolfo.gomes\RSAGen\RSAGen\bin\Debug\RSAtools.pdb
+C:\Users\rodolfo.gomes\RSAGen\RSAGen\obj\Debug\RSAtools.csprojAssemblyReference.cache
+C:\Users\rodolfo.gomes\RSAGen\RSAGen\obj\Debug\RSAtools.Form1.resources
+C:\Users\rodolfo.gomes\RSAGen\RSAGen\obj\Debug\RSAtools.Properties.Resources.resources
+C:\Users\rodolfo.gomes\RSAGen\RSAGen\obj\Debug\RSAtools.csproj.GenerateResource.cache
+C:\Users\rodolfo.gomes\RSAGen\RSAGen\obj\Debug\RSAtools.csproj.CoreCompileInputs.cache
+C:\Users\rodolfo.gomes\RSAGen\RSAGen\obj\Debug\RSAtools.exe
+C:\Users\rodolfo.gomes\RSAGen\RSAGen\obj\Debug\RSAtools.pdb

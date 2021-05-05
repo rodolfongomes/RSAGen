@@ -25,14 +25,14 @@ namespace RSAtools
 
         private void buttonNewRSA_Click(object sender, EventArgs e)
         {
-            RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
+            RSACryptoServiceProvider rsa = new RSACryptoServiceProvider(2048);
             textBoxPrivateKey.Text = Convert.ToBase64String(rsa.ExportCspBlob(true));
             textBoxPublicKey.Text = Convert.ToBase64String(rsa.ExportCspBlob(false));
         }
 
         private RSACryptoServiceProvider loadRSA(String key)
         {
-            RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
+            RSACryptoServiceProvider rsa = new RSACryptoServiceProvider(2048);
             byte[] keyBytes = Convert.FromBase64String(key);
             rsa.ImportCspBlob(keyBytes);
             return rsa;
@@ -85,7 +85,7 @@ namespace RSAtools
         {
             try
             {
-                byte[] encryptedData = loadRSA(textBoxPublicKeyForEncode.Text).Encrypt(Encoding.GetEncoding("utf-8").GetBytes(textBoxTextForEncode.Text), false);
+                byte[] encryptedData = loadRSA(textBoxPublicKeyForEncode.Text).Encrypt(Encoding.GetEncoding("utf-8").GetBytes(textBoxTextForEncode.Text), true);
                 textBoxEncodeForEncode.Text = Convert.ToBase64String(encryptedData);
             }
             catch
@@ -98,7 +98,7 @@ namespace RSAtools
         {
             try
             {
-                byte[] decryptedData = loadRSA(textBoxPrivateKeyForDecode.Text).Decrypt(Convert.FromBase64String(textBoxEncodeTextForDecode.Text), false);
+                byte[] decryptedData = loadRSA(textBoxPrivateKeyForDecode.Text).Decrypt(Convert.FromBase64String(textBoxEncodeTextForDecode.Text), true);
                 textBoxTextForDecode.Text = Encoding.GetEncoding("utf-8").GetString(decryptedData);
             }
             catch
@@ -140,8 +140,10 @@ namespace RSAtools
             openDialog.Multiselect = false;
             if (openDialog.ShowDialog() == DialogResult.OK)
             {
-                StreamReader streamReader = new StreamReader(openDialog.FileName);
-                textBoxPrivateKeyForSign.Text = streamReader.ReadToEnd();
+                using (var streamReader = new StreamReader(openDialog.FileName))
+                {
+                    textBoxPrivateKeyForSign.Text = streamReader.ReadToEnd();
+                }
             }
         }
 
@@ -152,8 +154,10 @@ namespace RSAtools
             openDialog.Multiselect = false;
             if (openDialog.ShowDialog() == DialogResult.OK)
             {
-                StreamReader streamReader = new StreamReader(openDialog.FileName);
-                textBoxPublicKeyForSignCheck.Text = streamReader.ReadToEnd();
+                using (var streamReader = new StreamReader(openDialog.FileName))
+                {
+                    textBoxPublicKeyForSignCheck.Text = streamReader.ReadToEnd();
+                }
             }
         }
 
@@ -164,8 +168,10 @@ namespace RSAtools
             openDialog.Multiselect = false;
             if (openDialog.ShowDialog() == DialogResult.OK)
             {
-                StreamReader streamReader = new StreamReader(openDialog.FileName);
-                textBoxPublicKeyForEncode.Text = streamReader.ReadToEnd();
+                using (var streamReader = new StreamReader(openDialog.FileName))
+                {
+                    textBoxPublicKeyForEncode.Text = streamReader.ReadToEnd();
+                }
             }
         }
 
@@ -176,8 +182,10 @@ namespace RSAtools
             openDialog.Multiselect = false;
             if (openDialog.ShowDialog() == DialogResult.OK)
             {
-                StreamReader streamReader = new StreamReader(openDialog.FileName);
-                textBoxPrivateKeyForDecode.Text = streamReader.ReadToEnd();
+                using (var streamReader = new StreamReader(openDialog.FileName))
+                {
+                    textBoxPrivateKeyForDecode.Text = streamReader.ReadToEnd();
+                }
             }
         }
     }
